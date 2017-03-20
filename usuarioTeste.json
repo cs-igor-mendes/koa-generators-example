@@ -1,0 +1,7 @@
+{
+    "name" : "teste",
+    "password": "teste"
+}
+
+//curl -X POST -d @usuarioTeste.json http://localhost:3000/create --header "Content-Type:application/json"
+//curl -X POST -H 'Content-Type: application/json' -d '{"name":"teste","password":"testepass"}' http://localhost:3000/create

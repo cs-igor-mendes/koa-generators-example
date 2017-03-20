@@ -1,0 +1,20 @@
+{
+  "name": "koaexamples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "consign": "^0.1.2",
+    "jsonwebtoken": "^7.3.0",
+    "koa": "^2.2.0",
+    "koa-body-parser": "^1.1.2",
+    "koa-router": "^5.4.0",
+    "mongoose": "^4.9.1",
+    "morgan": "^1.8.1"
+  }
+}
