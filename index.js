@@ -9,10 +9,11 @@ const router = koaRouter()
 app.use(bodyParser())
 
 consign()
-.include('config')
+.include('config.js')
 .then('db.js')
 .then('users/model.js')
 .then('users/api.js')
+.then('middlewares.js')
 .then('users/routes.js')
 .into(app)
 

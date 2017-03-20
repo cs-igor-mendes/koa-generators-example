@@ -4,10 +4,10 @@ const bluebird = require('bluebird')
 mongoose.Promise = bluebird;
 
 module.exports = (app) => {
-	mongoose.connect(app.config.dbConfig.uri);
+	mongoose.connect(app.config.uri);
 
 	mongoose.connection.on('connected', () => 
-		console.log(`Connected to MongoDB at ${app.config.dbConfig.uri}`)
+		console.log(`Connected to MongoDB at ${app.config.uri}`)
 	)
 
 	mongoose.connection.on('error',(error) => 
