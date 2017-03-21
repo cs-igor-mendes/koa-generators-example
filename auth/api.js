@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const jwt = require('jsonwebtoken')
+const jwtUtils = require('.././libs/jwt-utils')
 
 module.exports = app => {
 
@@ -10,7 +10,7 @@ module.exports = app => {
             yield User.findOne({'name': this.request.body.name, 'password': this.request.body.password})
             .then(user => {
                 if (user){
-                    let token = jwt.sign({
+                    let token = jwtUtils.sign({
                             data: this.request.body.name
                         }, app.config.secret, { expiresIn: '1h' })
 
