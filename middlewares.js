@@ -1,19 +1,34 @@
+const Promise = require('bluebird')
+const morgan = require('koa-morgan')
 const jwt = require('jsonwebtoken')
-const bluebird = require('bluebird')
 
-//TODO: Como buscar o x-access-token no header
 module.exports = app => {
-    app.use(function*(next) {
-        // console.log(`first filter with: `)
-        // let jwtPromise = Promise.promisify(jwt.verify, jwt)
-        // jwtPromise()
-        // .then(() => {
 
-        // })
-        // .catch(err => {
-        //     this.status = 401
-        //     this.body = {'status': 'Unauthorized'}
-        // })
-        yield next
-    })
+    let verifyTokenMiddleware = function *(next){
+        let token = this.request.header['x-access-token']
+        let verified = false
+        let promiseVerify = Promise.promisify(jwt.verify, jwt)
+
+        yield promiseVerify(token, app.config.secret)
+        .then( decoded => {
+            verified = true
+        })  
+        .catch( error => {
+            this.body = {
+                'status' : 'Login failed',  
+                'error': error.message
+            }
+            this.status = 401
+        })
+
+        if (verified) yield next
+    }
+
+
+    app.use(app.auth.routes.routes())
+    app.use(verifyTokenMiddleware)
+    app.use(app.users.routes.routes())
+
+    return app
+   
 }

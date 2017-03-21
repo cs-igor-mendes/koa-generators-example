@@ -7,7 +7,7 @@ module.exports = (app) => {
 	mongoose.connect(app.config.uri);
 
 	mongoose.connection.on('connected', () => 
-		console.log(`Connected to MongoDB at ${app.config.uri}`)
+		(`Connected to MongoDB at ${app.config.uri}`)
 	)
 
 	mongoose.connection.on('error',(error) => 
